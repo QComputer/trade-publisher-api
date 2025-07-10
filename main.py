@@ -19,10 +19,10 @@ app = Flask(__name__)
 
 # Database configuration with connection pooling
 DB_CONFIG = {
-    'host': os.environ.get('DB_HOST', 'localhost'),
+    'host': os.environ.get('DB_HOST', 'database-eva-service'),
     'user': os.environ.get('DB_USER', 'root'),
-    'password': os.environ.get('DB_PASSWORD', ''),
-    'database': os.environ.get('DB_NAME', 'trade_publisher'),
+    'password': os.environ.get('DB_PASSWORD', 'unZrbcCTSY8$g3g3SpHp'),
+    'database': os.environ.get('DB_NAME', 'databasenjd_db'),
     'port': int(os.environ.get('DB_PORT', 3306)),
     'pool_name': 'trade_pool',
     'pool_size': 10,
@@ -432,4 +432,4 @@ def internal_error(error):
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     debug = os.environ.get('FLASK_ENV') == 'development'
-    app.run(debug=debug, host='0.0.0.0', port=port)
+    app.run(debug=True, host='0.0.0.0', port=port)
