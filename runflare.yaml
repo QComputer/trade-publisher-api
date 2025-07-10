@@ -15,11 +15,11 @@ run:
 
 # Environment variables
 env:
-  DB_HOST: ${DB_HOST}
-  DB_USER: ${DB_USER}
-  DB_PASSWORD: ${DB_PASSWORD}
-  DB_NAME: ${DB_NAME}
-  DB_PORT: ${DB_PORT}
+  DB_HOST: ${remote-fanhab.runflare.com}
+  DB_USER: ${root}
+  DB_PASSWORD: ${pCUCW1!9ByEsds9vooAi}
+  DB_NAME: ${databasewlw_db}
+  DB_PORT: ${30255}
   API_KEY: ${API_KEY}
   SECRET_KEY: ${SECRET_KEY}
   FLASK_ENV: production
