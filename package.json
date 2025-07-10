@@ -1,0 +1,20 @@
+{
+  "name": "trade-publisher-api",
+  "version": "1.0.0",
+  "description": "Trade Publisher API for MQL4 integration",
+  "scripts": {
+    "deploy": "./scripts/deploy.sh",
+    "setup-db": "./scripts/setup-database.sh",
+    "install-cli": "npm install -g @runflare/cli",
+    "login": "runflare auth login",
+    "status": "runflare apps status trade-publisher-api",
+    "logs": "runflare logs trade-publisher-api --tail",
+    "scale": "runflare scale trade-publisher-api --instances 2"
+  },
+  "devDependencies": {
+    "@runflare/cli": "^1.0.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
