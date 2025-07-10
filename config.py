@@ -5,11 +5,11 @@ load_dotenv()
 
 class Config:
     # Database configuration
-    DB_HOST = os.environ.get('DB_HOST', 'remote-fanhab.runflare.com')
+    DB_HOST = os.environ.get('DB_HOST', 'database-eva-service')
     DB_USER = os.environ.get('DB_USER', 'root')
     DB_PASSWORD = os.environ.get('DB_PASSWORD', 'pCUCW1!9ByEsds9vooAi')
-    DB_NAME = os.environ.get('DB_NAME', 'trade_publisher')
-    DB_PORT = int(os.environ.get('DB_PORT', 30255))
+    DB_NAME = os.environ.get('DB_NAME', 'databasenjd_db')
+    DB_PORT = int(os.environ.get('DB_PORT', 3306))
     
     # API configuration
     API_KEY = os.environ.get('API_KEY', 'your-secret-api-key')

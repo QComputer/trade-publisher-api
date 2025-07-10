@@ -58,10 +58,10 @@ fi
 
 # Create MySQL service
 print_status "Creating MySQL service..."
-if runflare services list | grep -q "trade-db"; then
-    print_success "MySQL service 'trade-db' already exists"
+if runflare services list | grep -q "database"; then
+    print_success "MySQL service 'database' already exists"
 else
-    runflare services create mysql trade-db --version 8.0
+    runflare services create mysql database --version 8.0
     if [ $? -eq 0 ]; then
         print_success "MySQL service created successfully"
         print_status "Waiting for MySQL service to be ready..."
@@ -76,11 +76,11 @@ fi
 print_status "Setting environment variables..."
 runflare env set API_KEY="$API_KEY"
 runflare env set SECRET_KEY="$SECRET_KEY"
-runflare env set DB_NAME="trade_publisher"
+runflare env set DB_NAME="databasewlw_db"
 
 # Get database connection details
 print_status "Retrieving database connection details..."
-DB_INFO=$(runflare services describe trade-db --format json 2>/dev/null || echo "{}")
+DB_INFO=$(runflare services describe database --format json 2>/dev/null || echo "{}")
 
 if [ "$DB_INFO" != "{}" ]; then
     DB_HOST=$(echo $DB_INFO | jq -r '.host // empty')
@@ -140,8 +140,8 @@ if [ "$APP_INFO" != "{}" ]; then
         print_status "Setting up database schema..."
         if [ -n "$DB_HOST" ] && [ -n "$DB_USER" ] && [ -n "$DB_PASSWORD" ]; then
             mysql -h "$DB_HOST" -P "$DB_PORT" -u "$DB_USER" -p"$DB_PASSWORD" << 'EOF'
-CREATE DATABASE IF NOT EXISTS trade_publisher;
-USE trade_publisher;
+CREATE DATABASE IF NOT EXISTS databasewlw_db;
+USE databasewlw_db;
 
 CREATE TABLE IF NOT EXISTS accounts (
     account_number BIGINT PRIMARY KEY,
@@ -211,18 +211,18 @@ echo ""
 echo "🎉 Deployment Summary"
 echo "===================="
 echo "Application: trade-publisher-api"
-echo "URL: ${APP_URL:-'Not available'}"
+echo "URL: ${APP_URL:-'http://copytrade.runflare.run'}"
 echo "API Key: ${API_KEY:0:8}..."
-echo "Database: trade-db (MySQL 8.0)"
+echo "Database: database (MySQL 8.0)"
 echo ""
 echo "📋 Next Steps:"
 echo "1. Update your MQL4 EA with the following settings:"
-echo "   - ServerURL: ${APP_URL:-'https://your-app.runflare.com'}/api/trades"
+echo "   - ServerURL: ${APP_URL:-'https://copytrade.runflare.run'}/api/trades"
 echo "   - ApiKey: $API_KEY"
 echo ""
 echo "2. Test the API endpoints:"
-echo "   - Health: curl -H \"Authorization: Bearer $API_KEY\" \"${APP_URL:-'https://your-app.runflare.com'}/api/health\""
-echo "   - Accounts: curl -H \"Authorization: Bearer $API_KEY\" \"${APP_URL:-'https://your-app.runflare.com'}/api/accounts\""
+echo "   - Health: curl -H \"Authorization: Bearer $API_KEY\" \"${APP_URL:-'https://copytrade.runflare.run'}/api/health\""
+echo "   - Accounts: curl -H \"Authorization: Bearer $API_KEY\" \"${APP_URL:-'https://copytrade.runflare.run'}/api/accounts\""
 echo ""
 echo "3. Monitor your application:"
 echo "   - Logs: runflare logs trade-publisher-api --tail"
@@ -242,13 +242,13 @@ API Key: $API_KEY
 Secret Key: $SECRET_KEY
 
 Database Details:
-- Host: ${DB_HOST:-'Not available'}
+- Host: ${DB_HOST:-'database-eva-service'}
 - Port: ${DB_PORT:-'3306'}
-- User: ${DB_USER:-'Not available'}
-- Database: trade_publisher
+- User: ${DB_USER:-'root'}
+- Database: databasewlw_db
 
 MQL4 Configuration:
-- ServerURL: ${APP_URL:-'https://your-app.runflare.com'}/api/trades
+- ServerURL: ${APP_URL:-'https://copytrade.runflare.run'}/api/trades
 - ApiKey: $API_KEY
 
 Useful Commands:

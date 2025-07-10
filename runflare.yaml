@@ -17,9 +17,9 @@ run:
 env:
   DB_HOST: ${remote-fanhab.runflare.com}
   DB_USER: ${root}
-  DB_PASSWORD: ${pCUCW1!9ByEsds9vooAi}
-  DB_NAME: ${databasewlw_db}
-  DB_PORT: ${30255}
+  DB_PASSWORD: ${unZrbcCTSY8$g3g3SpHp}
+  DB_NAME: ${databasenjd_db}
+  DB_PORT: ${31203}
   API_KEY: ${API_KEY}
   SECRET_KEY: ${SECRET_KEY}
   FLASK_ENV: production
@@ -28,7 +28,7 @@ env:
 services:
   - type: mysql
     version: "8.0"
-    name: trade-db
+    name: database-eva-service
 
 # Health check
 health:
